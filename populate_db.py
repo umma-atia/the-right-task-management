@@ -45,13 +45,20 @@ def populate_db():
     print(f"Created {len(tasks)} tasks.")
 
     # Create Task Details
+    # for task in tasks:
+    #     TaskDetail.objects.create(
+    #         task_relation=task,
+    #         assigned_to=", ".join(
+    #             [emp.name for emp in task.assigned_to.all()]),
+    #         priority=random.choice(['H', 'M', 'L']),
+    #         notes=fake.paragraph()
+    #     )
+
     for task in tasks:
         TaskDetail.objects.create(
-            task_relation=task,
-            assigned_to=", ".join(
-                [emp.name for emp in task.assigned_to.all()]),
-            priority=random.choice(['H', 'M', 'L']),
-            notes=fake.paragraph()
-        )
+        task_relation=task,
+        notes=fake.paragraph(),
+        priority=random.choice(['H', 'M', 'L'])
+    )    
     print("Populated TaskDetails for all tasks.")
     print("Database populated successfully!")

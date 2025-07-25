@@ -57,7 +57,7 @@ class TaskDetail(models.Model):
     # task_id = models.CharField(max_length=200, primary_key=True)
     task_relation = models.OneToOneField(
         Task, 
-        on_delete=models.CASCADE,
+        on_delete=models.DO_NOTHING,
         related_name = 'details'
     )
     notes = models.TextField(blank=True, null=True)
