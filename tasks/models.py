@@ -1,15 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
-
-class Employee(models.Model):
-    name = models.CharField(max_length=150)
-    email = models.EmailField(unique=True)
-    # task_set = models.ManyToManyField(Task)
-    # (same as taskdetail of Task. but many to many relation howyar karone ektu tofat ache. module 5.9 valo kore follow korte hobe.)
-    
-    def __str__(self):
-        return self.name
 
 class Task(models.Model):
     STATUS_CHOICES = [
@@ -24,12 +16,11 @@ class Task(models.Model):
         default=1,
         related_name='projects'
     )
-    assigned_to = models.ManyToManyField(Employee,related_name='tasks')
+    assigned_to = models.ManyToManyField(User,related_name='tasks')
     title = models.CharField(max_length=250)
     description = models.TextField()
     due_date = models.DateField()
     status = models.CharField(max_length=15, choices=STATUS_CHOICES, default='PENDING')
-    is_completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -60,8 +51,8 @@ class TaskDetail(models.Model):
         on_delete=models.DO_NOTHING,
         related_name = 'details'
     )
+    asset = models.ImageField(upload_to='tasks_asset', blank=True, null=True, default="tasks_asset/default_img.jpg")
     notes = models.TextField(blank=True, null=True)
-    # assigned_to = models.CharField(max_length=100)
     priority = models.CharField(max_length=1, choices = PRIORITY_OPTIONS, default='L')
 
     def __str__(self):
