@@ -14,7 +14,7 @@ class Task(models.Model):
         "Project",
         on_delete=models.CASCADE, 
         default=1,
-        related_name='projects'
+        # related_name='projects'
     )
     assigned_to = models.ManyToManyField(User,related_name='tasks')
     title = models.CharField(max_length=250)

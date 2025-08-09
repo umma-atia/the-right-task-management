@@ -7,18 +7,14 @@
 </head>
 <body>
     <div>
-        <ul>
-            {% comment %} {% for task in tasks %}
-            <li>
-                <p>{{task.task_relation}}</p>
-                <span>{{task.priority}}</span>
-            </li>
-            {% endfor %} {% endcomment %}
-        </ul>
-            {% comment %} <p>{{task_count}}</p> {% endcomment %}
+        <ol>
+            {% for project in projects %}
+                <li>
+                    <p>{{project.name}}</p>
+                    <p>{{project.num_task}}</p>
+                </li>
+            {% endfor %}
+        </ol> 
     </div>
-    {% comment %} <div>
-        {{tasks}}
-    </div> {% endcomment %}
 </body>
 </html>
